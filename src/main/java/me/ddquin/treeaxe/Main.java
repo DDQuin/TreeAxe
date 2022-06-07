@@ -13,8 +13,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
+    private NamespacedKey treeAxeKey;
+
     @Override
     public void onEnable() {
+        treeAxeKey = new NamespacedKey(this, "treeaxe");
         getCommand("treeaxe").setExecutor(new CommandsTreeAxe(this));
         getServer().getPluginManager().registerEvents(new ListenerTree(this), this);
     }
@@ -23,7 +26,6 @@ public class Main extends JavaPlugin {
         ItemStack treeAxe = new ItemStack(Material.DIAMOND_AXE, 1);
         ItemMeta i = treeAxe.getItemMeta();
         i.setDisplayName(ChatColor.GREEN + "Tree Axe");
-        NamespacedKey treeAxeKey = new NamespacedKey(this, "treeaxe");
         i.getPersistentDataContainer().set(treeAxeKey, PersistentDataType.STRING, "treeaxe");
         treeAxe.setItemMeta(i);
         return treeAxe;
@@ -31,7 +33,7 @@ public class Main extends JavaPlugin {
 
     public boolean isTreeAxe(ItemMeta meta) {
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
-        return pdc.has(new NamespacedKey(this, "treeaxe"), PersistentDataType.STRING);
+        return pdc.has(treeAxeKey, PersistentDataType.STRING);
     }
 
 
