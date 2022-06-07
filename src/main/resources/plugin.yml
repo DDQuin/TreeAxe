@@ -1,0 +1,9 @@
+name: TreeAxe
+main: me.ddquin.treeaxe.Main
+version: 1.0
+api-version: "1.18"
+author: DDQuin
+commands:
+  treeaxe:
+    description: Command to obtain tree axe
+
